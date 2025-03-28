@@ -1,10 +1,14 @@
 // import { Fragment } from "react";
 // import { MouseEvent } from "react";
-
 import { useState } from "react";
 
-function ListGroup() {
-  let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
+interface ListGroupProps {
+  items: string[]; // props are used to pass data from parent to child component
+  heading: string;
+} //thanks to props we can reuse the component in different places with different data
+
+function ListGroup({ items, heading }: ListGroupProps) {
+  // let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
   //   items = []; // to test the empty list case
   //   const GetMessage = () => {
   //     return items.length === 0 ? <p>No items found</p> : null;
@@ -86,8 +90,29 @@ function ListGroup() {
     //   ))}
     // </>
 
+    // <>
+    //   <h1>List</h1>
+    //   <ul className="list-group">
+    //     {items.map((item, index) => (
+    //       <li
+    //         className={
+    //           selectedIndex === index
+    //             ? "list-group-item active"
+    //             : "list-group-item"
+    //         }
+    //         key={item}
+    //         onClick={() => {
+    //           setSelectedIndex(index);
+    //         }}
+    //       >
+    //         {item}
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </>
+
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       <ul className="list-group">
         {items.map((item, index) => (
           <li
