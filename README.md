@@ -15,6 +15,7 @@ React Basics is a personal project designed to showcase the fundamentals of **Re
 
 ## 📂 Project Structure
 
+```
 ReactBasics/
 │── public/
 │   └── vite.svg # Public assets
@@ -36,6 +37,7 @@ ReactBasics/
 ├── tsconfig.node.json # TypeScript configuration for Vite
 ├── vite.config.ts # Vite configuration
 └── README.md # Project documentation
+```
 
 ---
 
