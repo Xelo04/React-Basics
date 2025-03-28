@@ -1,7 +1,12 @@
 // import { Fragment } from "react";
 
 function ListGroup() {
-  const items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
+  let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
+  items = []; // to test the empty list case
+
+  //   const GetMessage = () => {
+  //     return items.length === 0 ? <p>No items found</p> : null;
+  //   };
 
   return (
     // <h1>List</h1> u cant use more than 2 elements in a single component
@@ -32,13 +37,26 @@ function ListGroup() {
     // </>
     // </Fragment>
 
+    // <>
+    //   <h1>List</h1>
+    //   {/* {message} */}
+    //   {GetMessage()}
+    //   {/*one of the ways show the message of empty array but if u dont need and variable in function its better to use const*/}
+    //   <ul className="list-group"></ul>
+    //   {/* it is now allowed expresion in JSX bcs u can only use HTML or React elements  */}
+    //   {/* items.map((item) => (<li>{item}</li>))*/}
+    //   {items.map((item) => (
+    //     <li key={item}>{item}</li> // every item should have a unique key
+    //   ))}
+    // </>
+
     <>
       <h1>List</h1>
+      {/* code is more readable and cleaner */}
+      {items.length == 0 && <p>No items found</p>}
       <ul className="list-group"></ul>
-      {/* it is now allowed expresion in JSX bcs u can only use HTML or React elements  */}
-      {/* items.map((item) => (<li>{item}</li>))*/}
       {items.map((item) => (
-        <li key={item}>{item}</li> // every item should have a unique key
+        <li key={item}>{item}</li>
       ))}
     </>
   );
