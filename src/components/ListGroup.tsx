@@ -1,15 +1,20 @@
 // import { Fragment } from "react";
-import { MouseEvent } from "react";
+// import { MouseEvent } from "react";
+
+import { useState } from "react";
 
 function ListGroup() {
   let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
   //   items = []; // to test the empty list case
-
   //   const GetMessage = () => {
   //     return items.length === 0 ? <p>No items found</p> : null;
   //   };
 
-  const handleClick = (event: MouseEvent) => console.log(event); //we need to add MosuseEvent bcs TypeScript is strict and we need to tell it what type of event we are using
+  // const handleClick = (event: MouseEvent) => console.log(event); //we need to add MosuseEvent bcs TypeScript is strict and we need to tell it what type of event we are using
+
+  // let selectedIndex = 0; // it wont work bcs React doesnt see this variable as a state variable and it will not re-render the component when it changes. So we need to use useState hook to make it work.
+  const [selectedIndex, setSelectedIndex] = useState(-1); //hook
+  //each component can have its own state and it is not shared with other components
 
   return (
     // <h1>List</h1> u cant use more than 2 elements in a single component
@@ -63,22 +68,43 @@ function ListGroup() {
     //   ))}
     // </>
 
+    // <>
+    //   <h1>List</h1>
+    //   {/* code is more readable and cleaner */}
+    //   {items.length == 0 && <p>No items found</p>}
+    //   <ul className="list-group"></ul>
+    //   {items.map((item, index) => (
+    //     <li
+    //       className="list-group-item"
+    //       key={item}
+    //       //   onClick={() => console.log(item, index) // renders item and its index
+    //       //   onClick={(event) => console.log(event)} // shows SyntheticEvent object which have all basic properties of event object in JS
+    //       onClick={handleClick}
+    //     >
+    //       {item}
+    //     </li>
+    //   ))}
+    // </>
+
     <>
       <h1>List</h1>
-      {/* code is more readable and cleaner */}
-      {items.length == 0 && <p>No items found</p>}
-      <ul className="list-group"></ul>
-      {items.map((item, index) => (
-        <li
-          className="list-group-item"
-          key={item}
-          //   onClick={() => console.log(item, index) // renders item and its index
-          //   onClick={(event) => console.log(event)} // shows SyntheticEvent object which have all basic properties of event object in JS
-          onClick={handleClick}
-        >
-          {item}
-        </li>
-      ))}
+      <ul className="list-group">
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
