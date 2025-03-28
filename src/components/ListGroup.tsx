@@ -5,9 +5,12 @@ import { useState } from "react";
 interface ListGroupProps {
   items: string[]; // props are used to pass data from parent to child component
   heading: string;
+  // (item: string) => void; // this is a function that takes a string as an argument and returns void
+  onSelectItem: (item: string) => void;
 } //thanks to props we can reuse the component in different places with different data
+// we cant change value of props variable in the component, we can only read it. if we want to change it we need to use state variable
 
-function ListGroup({ items, heading }: ListGroupProps) {
+function ListGroup({ items, heading, onSelectItem }: ListGroupProps) {
   // let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
   //   items = []; // to test the empty list case
   //   const GetMessage = () => {
@@ -111,6 +114,27 @@ function ListGroup({ items, heading }: ListGroupProps) {
     //   </ul>
     // </>
 
+    // <>
+    //   <h1>{heading}</h1>
+    //   <ul className="list-group">
+    //     {items.map((item, index) => (
+    //       <li
+    //         className={
+    //           selectedIndex === index
+    //             ? "list-group-item active"
+    //             : "list-group-item"
+    //         }
+    //         key={item}
+    //         onClick={() => {
+    //           setSelectedIndex(index);
+    //         }}
+    //       >
+    //         {item}
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </>
+
     <>
       <h1>{heading}</h1>
       <ul className="list-group">
@@ -124,6 +148,7 @@ function ListGroup({ items, heading }: ListGroupProps) {
             key={item}
             onClick={() => {
               setSelectedIndex(index);
+              onSelectItem(item); // this will call the function passed from the parent component
             }}
           >
             {item}
