@@ -1,12 +1,15 @@
 // import { Fragment } from "react";
+import { MouseEvent } from "react";
 
 function ListGroup() {
   let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
-  items = []; // to test the empty list case
+  //   items = []; // to test the empty list case
 
   //   const GetMessage = () => {
   //     return items.length === 0 ? <p>No items found</p> : null;
   //   };
+
+  const handleClick = (event: MouseEvent) => console.log(event); //we need to add MosuseEvent bcs TypeScript is strict and we need to tell it what type of event we are using
 
   return (
     // <h1>List</h1> u cant use more than 2 elements in a single component
@@ -50,13 +53,31 @@ function ListGroup() {
     //   ))}
     // </>
 
+    // <>
+    //   <h1>List</h1>
+    //   {/* code is more readable and cleaner */}
+    //   {items.length == 0 && <p>No items found</p>}
+    //   <ul className="list-group"></ul>
+    //   {items.map((item) => (
+    //     <li key={item}>{item}</li>
+    //   ))}
+    // </>
+
     <>
       <h1>List</h1>
       {/* code is more readable and cleaner */}
       {items.length == 0 && <p>No items found</p>}
       <ul className="list-group"></ul>
-      {items.map((item) => (
-        <li key={item}>{item}</li>
+      {items.map((item, index) => (
+        <li
+          className="list-group-item"
+          key={item}
+          //   onClick={() => console.log(item, index) // renders item and its index
+          //   onClick={(event) => console.log(event)} // shows SyntheticEvent object which have all basic properties of event object in JS
+          onClick={handleClick}
+        >
+          {item}
+        </li>
       ))}
     </>
   );
